@@ -5,7 +5,7 @@ A library for hash-based routing in the browser.
 ## Introduction
 In a Single Page App (SPA), it is convenient to _navigate_ by changing the part of the URL after the hash `#` character, as this will not cause the browser to reload the page.
 
-This library allows you to associate _callbacks_ with URL paths after the hash, so when a user navigate to a given path, the associated callback is called.
+This library allows you to associate _callbacks_ with URL paths after the hash, so when a user navigates to a given path, the associated callback is called.
 
 ## Install
 You can use this library as either an EcmaScript module, or the old way as a script which you include in your html file.
