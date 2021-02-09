@@ -1,7 +1,7 @@
 {
   "name": "@techexp/hash-router",
   "version": "0.0.1",
-  "description": "Hash-based Web Router",
+  "description": "Hash-based Web Router for SPAs",
   "author": "Abdul Habra",
   "license": "Apache",
   "main": "dist/HashRouter-esm.js",
