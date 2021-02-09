@@ -7,6 +7,8 @@ In a Single Page App (SPA), it is convenient to _navigate_ by changing the part 
 
 This library allows you to associate _callbacks_ with URL paths after the hash, so when a user navigates to a given path, the associated callback is called.
 
+The size of this library, minified and zipped is about 1KB.
+
 ## Install
 You can use this library as either an EcmaScript module, or the old way as a script which you include in your html file.
 
