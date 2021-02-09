@@ -4,6 +4,7 @@
   "description": "Hash-based Web Router for SPAs",
   "author": "Abdul Habra",
   "license": "Apache",
+  "repository": "ahabra/hash-router",
   "main": "dist/HashRouter-esm.js",
   "engines": {
     "node": ">=15.0.0",
