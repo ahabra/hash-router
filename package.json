@@ -1,0 +1,31 @@
+{
+  "name": "@techexp/hash-router",
+  "version": "0.0.1",
+  "description": "Hash-based Web Router",
+  "author": "Abdul Habra",
+  "license": "Apache",
+  "main": "dist/HashRouter-esm.js",
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=7.0.0"
+  },
+  "scripts": {
+    "clean": "node scripts/clean.js",
+    "build": "node scripts/build.js",
+    "server": "node scripts/server.js",
+    "test": "npm run lint && web-test-runner",
+    "test:watch": "web-test-runner --watch",
+    "lint": "eslint src --fix"
+  },
+  "devDependencies": {
+    "@esm-bundle/chai": "^4.3.0",
+    "@web/test-runner": "^0.12.14",
+    "@web/test-runner-commands": "^0.4.1",
+    "@web/test-runner-puppeteer": "^0.9.3",
+    "chalk": "^4.1.0",
+    "esbuild": "^0.8.43",
+    "eslint": "^7.19.0",
+    "fs-extra": "^9.1.0",
+    "serve": "^11.3.2"
+  }
+}

@@ -1,0 +1,4 @@
+--ignore-dir=target
+--ignore-dir=dist
+--ignore-file=is:package-lock.json
+--ignore-file=ext:iml
