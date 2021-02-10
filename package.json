@@ -1,13 +1,16 @@
 {
   "name": "@techexp/hash-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Hash-based Web Router for SPAs",
   "author": "Abdul Habra",
   "license": "Apache",
   "repository": "ahabra/hash-router",
   "main": "dist/HashRouter-esm.js",
   "keywords": [
-    "router", "hash", "hash router", "SPA router"
+    "router",
+    "hash",
+    "hash router",
+    "SPA router"
   ],
   "engines": {
     "node": ">=15.0.0",
