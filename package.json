@@ -6,6 +6,9 @@
   "license": "Apache",
   "repository": "ahabra/hash-router",
   "main": "dist/HashRouter-esm.js",
+  "keywords": [
+    "router", "hash", "hash router", "SPA router"
+  ],
   "engines": {
     "node": ">=15.0.0",
     "npm": ">=7.0.0"
