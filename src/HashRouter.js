@@ -1,4 +1,4 @@
-import * as StringUtils from './utils/StringUtils'
+import {Stringer} from '@techexp/jshelper'
 import {cleanPath, getHashPath} from './utils/RouterUtils'
 import {Route} from './utils/Route'
 
@@ -23,7 +23,7 @@ class HashRouter {
 
   go(hashPath) {
     hashPath = '#' + cleanPath(hashPath)
-    const base = StringUtils.substringBefore(window.location.href, '#')
+    const base = Stringer.substringBefore(window.location.href, '#')
     const href = base + hashPath
     window.history.pushState(null, null, hashPath)
     window.location.href = href

@@ -4,58 +4,19 @@
 // Apache License Version 2.0
 
 
-// src/utils/StringUtils.js
-function indexOf(st, search, fromIndex, ignoreCase) {
-  if (!st)
-    return -1;
-  if (ignoreCase) {
-    return st.toLowerCase().indexOf(search.toLowerCase(), fromIndex);
-  }
-  return st.indexOf(search, fromIndex);
-}
-function firstCharIndex(st, cb) {
-  if (!cb || !st)
-    return -1;
-  return st.split("").findIndex(cb);
-}
-function lastCharIndex(st, cb) {
-  if (!cb || !st)
-    return -1;
-  const chars = st.split("");
-  for (let i = chars.length; i >= 0; --i) {
-    if (cb(chars[i]))
-      return i;
-  }
-  return -1;
-}
-function substringAfter(st, search, ignoreCase) {
-  if (!search) {
-    return st;
-  }
-  const i = indexOf(st, search, 0, ignoreCase);
-  if (i < 0)
-    return "";
-  return st.substring(i + search.length);
-}
-function substringBefore(st, search, ignoreCase) {
-  if (!search) {
-    return "";
-  }
-  const i = indexOf(st, search, 0, ignoreCase);
-  if (i < 0)
-    return st;
-  return st.substring(0, i);
-}
+// src/HashRouter.js
+import {Stringer as Stringer2} from "@techexp/jshelper";
 
 // src/utils/RouterUtils.js
+import {Stringer} from "@techexp/jshelper";
 function getHashPath(href) {
-  href = substringAfter(href, "#");
+  href = Stringer.substringAfter(href, "#");
   return cleanPath(href);
 }
 function cleanPath(path) {
   const cb = (c) => c !== "/" && c !== "#";
-  const start = firstCharIndex(path, cb);
-  const end = lastCharIndex(path, cb);
+  const start = Stringer.indexOfFirstMatch(path, cb);
+  const end = Stringer.indexOfLastMatch(path, cb);
   return path.substring(start, end);
 }
 
@@ -123,7 +84,7 @@ var HashRouter = class {
   }
   go(hashPath) {
     hashPath = "#" + cleanPath(hashPath);
-    const base = substringBefore(window.location.href, "#");
+    const base = Stringer2.substringBefore(window.location.href, "#");
     const href = base + hashPath;
     window.history.pushState(null, null, hashPath);
     window.location.href = href;
