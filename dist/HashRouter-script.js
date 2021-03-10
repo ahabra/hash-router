@@ -223,6 +223,8 @@ var HashRouter = (() => {
     });
   }
   function classPresentIf(el, cssClass, condition) {
+    if (!el)
+      return;
     const func = condition ? "add" : "remove";
     el.classList[func](cssClass);
   }
