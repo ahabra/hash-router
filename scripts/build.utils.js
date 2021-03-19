@@ -7,12 +7,14 @@ const Print = require('./console.utils').Print
 const target = 'target'
 const out = `${target}/out`
 const dist = 'dist'
-const banner = `// HashRouter.js Library for hash-based routing.
+const banner = {
+  js: `// HashRouter.js Library for hash-based routing.
 // https://github.com/ahabra/hash-router
 // Copyright 2021 (C) Abdul Habra. Version ${process.env.npm_package_version}.
 // Apache License Version 2.0
 
 `
+}
 
 function clean() {
   fs.rmSync(target, { recursive: true, force: true})
