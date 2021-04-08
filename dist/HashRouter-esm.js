@@ -1,6 +1,6 @@
 // HashRouter.js Library for hash-based routing.
 // https://github.com/ahabra/hash-router
-// Copyright 2021 (C) Abdul Habra. Version 0.1.5.
+// Copyright 2021 (C) Abdul Habra. Version 0.1.6.
 // Apache License Version 2.0
 
 
@@ -14,10 +14,7 @@ function getHashPath(href) {
   return cleanPath(href);
 }
 function cleanPath(path) {
-  const cb = (c) => c !== "/" && c !== "#";
-  const start = Stringer.indexOfFirstMatch(path, cb);
-  const end = Stringer.indexOfLastMatch(path, cb);
-  return path.substring(start, end);
+  return Stringer.strip(path, " /#");
 }
 
 // src/utils/Route.js
@@ -92,7 +89,7 @@ var HashRouter = class {
 };
 function hashChangeHandler(ev, routes, isLoad = false) {
   const newPath = getNewPath(ev, isLoad);
-  if (!newPath)
+  if (newPath === void 0)
     return;
   const params = {};
   const handler = findHandler(routes, newPath, params);
@@ -106,7 +103,7 @@ function getNewPath(ev, isLoad) {
   }
   const oldPath = getHashPath(ev.oldURL);
   const newPath = getHashPath(ev.newURL);
-  return oldPath === newPath ? "" : newPath;
+  return oldPath === newPath ? void 0 : newPath;
 }
 function findHandler(routes, path, params) {
   const found = routes.find((r) => r.route.isMatch(path, params));
@@ -115,3 +112,4 @@ function findHandler(routes, path, params) {
 export {
   createRouter
 };
+//# sourceMappingURL=HashRouter-esm.js.map

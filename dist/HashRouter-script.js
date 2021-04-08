@@ -1,6 +1,6 @@
 // HashRouter.js Library for hash-based routing.
 // https://github.com/ahabra/hash-router
-// Copyright 2021 (C) Abdul Habra. Version 0.1.5.
+// Copyright 2021 (C) Abdul Habra. Version 0.1.6.
 // Apache License Version 2.0
 
 
@@ -265,6 +265,9 @@ var HashRouter = (() => {
     replaceAll: () => replaceAll,
     replaceTemplate: () => replaceTemplate,
     startsWith: () => startsWith,
+    strip: () => strip,
+    stripEnd: () => stripEnd,
+    stripStart: () => stripStart,
     substringAfter: () => substringAfter,
     substringBefore: () => substringBefore,
     trim: () => trim
@@ -368,6 +371,47 @@ var HashRouter = (() => {
     });
     return text;
   }
+  function stripStart(s, stripChars = "") {
+    if (isEmpty(s))
+      return "";
+    if (!stripChars)
+      return s;
+    return stripStart_(s, new Set(Array.from(stripChars)));
+  }
+  function stripStart_(s, stripSet) {
+    for (let i = 0; i < s.length; i++) {
+      if (!stripSet.has(s.charAt(i))) {
+        return s.substring(i);
+      }
+    }
+    return "";
+  }
+  function stripEnd(s, stripChars = "") {
+    if (isEmpty(s))
+      return "";
+    if (!stripChars)
+      return s;
+    return stripEnd_(s, new Set(Array.from(stripChars)));
+  }
+  function stripEnd_(s, stripSet) {
+    for (let i = s.length - 1; i >= 0; i--) {
+      if (!stripSet.has(s.charAt(i))) {
+        return s.substring(0, i + 1);
+      }
+    }
+    return "";
+  }
+  function strip(s, stripChars = "") {
+    if (s === void 0 || s === "")
+      return "";
+    if (!stripChars)
+      return s;
+    const stripSet = new Set(Array.from(stripChars));
+    s = stripStart_(s, stripSet);
+    if (!s)
+      return "";
+    return stripEnd_(s, stripSet);
+  }
   var LineCompare_exports = {};
   __export2(LineCompare_exports, {
     compareLines: () => compareLines
@@ -416,10 +460,7 @@ ${t2}`;
     return cleanPath(href);
   }
   function cleanPath(path) {
-    const cb = (c) => c !== "/" && c !== "#";
-    const start = Stringer_exports.indexOfFirstMatch(path, cb);
-    const end = Stringer_exports.indexOfLastMatch(path, cb);
-    return path.substring(start, end);
+    return Stringer_exports.strip(path, " /#");
   }
 
   // src/utils/Route.js
@@ -494,7 +535,7 @@ ${t2}`;
   };
   function hashChangeHandler(ev, routes, isLoad = false) {
     const newPath = getNewPath(ev, isLoad);
-    if (!newPath)
+    if (newPath === void 0)
       return;
     const params = {};
     const handler = findHandler(routes, newPath, params);
@@ -508,7 +549,7 @@ ${t2}`;
     }
     const oldPath = getHashPath(ev.oldURL);
     const newPath = getHashPath(ev.newURL);
-    return oldPath === newPath ? "" : newPath;
+    return oldPath === newPath ? void 0 : newPath;
   }
   function findHandler(routes, path, params) {
     const found = routes.find((r) => r.route.isMatch(path, params));
@@ -516,3 +557,4 @@ ${t2}`;
   }
   return HashRouter_exports;
 })();
+//# sourceMappingURL=HashRouter-script.js.map
