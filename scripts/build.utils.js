@@ -33,6 +33,7 @@ function build({format, minify, external, fileNameSuffix}) {
   const buildOptions = {
     entryPoints: ['src/HashRouter.js'],
     bundle: true,
+    sourcemap: true,
     banner,
     outfile: `${out}/HashRouter-${fileNameSuffix}.js`,
     minify: !!minify,

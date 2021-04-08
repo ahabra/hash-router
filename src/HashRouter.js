@@ -33,7 +33,7 @@ class HashRouter {
 
 function hashChangeHandler(ev, routes, isLoad = false) {
   const newPath = getNewPath(ev, isLoad)
-  if (!newPath) return
+  if (newPath === undefined) return
 
   const params = {}
   const handler = findHandler(routes, newPath, params)
@@ -48,7 +48,8 @@ function getNewPath(ev, isLoad) {
   }
   const oldPath = getHashPath(ev.oldURL)
   const newPath = getHashPath(ev.newURL)
-  return oldPath === newPath ? '' : newPath
+
+  return oldPath === newPath ? undefined : newPath
 }
 
 function findHandler(routes, path, params) {

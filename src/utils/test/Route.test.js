@@ -39,12 +39,33 @@ describe('Route', ()=> {
       expect(parts[2]).to.eql({type: 'string', value: 'c'})
     })
 
+    it('parses empty path', ()=> {
+      expect(new Route('/').parts.length).to.equal(0)
+      expect(new Route('#').parts.length).to.equal(0)
+      expect(new Route('/#').parts.length).to.equal(0)
+      expect(new Route('  /# ').parts.length).to.equal(0)
+    })
+
   })
 
   describe('isMatch', ()=> {
     it('matches a simple path', ()=> {
       const route = new Route('a')
       expect(route.isMatch('a')).to.be.true
+      expect(route.isMatch('b')).to.be.false
+    })
+
+    it('matches empty path', ()=> {
+      expect(new Route('/').isMatch('/')).to.be.true
+      expect(new Route('#').isMatch('#')).to.be.true
+      expect(new Route('#/').isMatch('#/')).to.be.true
+      expect(new Route('#/').isMatch('')).to.be.true
+      expect(new Route('/#').isMatch('')).to.be.true
+      expect(new Route('').isMatch('')).to.be.true
+      expect(new Route().isMatch('')).to.be.true
+      expect(new Route().isMatch()).to.be.true
+      expect(new Route().isMatch('a')).to.be.false
+      expect(new Route('').isMatch('b')).to.be.false
     })
 
     it('matches a path with blanks', ()=> {

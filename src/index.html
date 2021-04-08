@@ -1,15 +1,112 @@
 <html>
   <head>
     <title>Hash Router</title>
+
+    <style>
+      a {
+        font-size: 2em;
+        background-color: beige;
+        color: saddlebrown;
+        border-radius: 0.5em;
+        padding: 0.25em 0.7em;
+        margin: 0.25em;
+        box-sizing: border-box;
+        display: inline-block;
+      }
+      #nav {
+        height: 5em;
+        background-color: honeydew;
+        padding: 0.5em;
+        box-sizing: border-box;
+      }
+
+      #output {
+        width: 10em;
+        height: 2em;
+        background-color: Lavender;
+        margin: 1em 0.5em;
+        padding: 0.2em;
+        box-sizing: border-box;
+        font-size: 3em;
+      }
+
+      #log {
+        width: 30em;
+        height: 10em;
+        background-color: LightYellow;
+        margin: 1em;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      }
+
+    </style>
   </head>
 
   <body>
-    <h1>Hash Router</h1>
-    <div id="content"></div>
+    <h1>Visually Testing Hash Router</h1>
+    <div id="content">
+      <div id="nav">
+        <a href="#a">A</a>
+        <a href="#b">B</a>
+        <a href="#c">C</a>
+        <a href="#d">D</a>
+        <a href="#/">Reset</a>
+      </div>
+
+      <div id="output"></div>
+      <div id="log"></div>
+
+    </div>
 
 
     <!-- JS code will be added to script element with 'data-app' attribute -->
     <script data-app></script>
+    <script>
+(function() {
+  function log(msg) {
+    const logArea = document.getElementById('log')
+    const html = logArea.innerHTML
+    logArea.innerHTML = html + '<br>' + msg
+    logArea.scrollTop = logArea.scrollHeight
+  }
+
+  function setupRoutes() {
+    const router = HashRouter.createRouter()
+
+    router.add('a', path => showOutput(path))
+    router.add('b', path => showOutput(path))
+    router.add('c', path => showOutput(path))
+    router.add('d', path => showOutput(path))
+    router.add('/', path => showOutput(path))
+  }
+
+  function showOutput(path) {
+    const color = getColor(path)
+    const outputArea= document.getElementById('output')
+    outputArea.style = 'background-color:' + color
+    outputArea.innerHTML = path
+    log(`'${path}': ${color}`)
+  }
+
+  function getColor(path) {
+    const colors = {
+      a: 'pink',
+      b: 'Gold',
+      c: 'Green',
+      d: 'LightCyan',
+      '': 'Lavender'
+    }
+    return colors[path]
+  }
+
+  setupRoutes()
+})()
+
+
+
+
+    </script>
 
   </body>
 </html>
