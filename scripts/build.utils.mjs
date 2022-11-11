@@ -1,8 +1,8 @@
 /** Utilities used by both build.js and server.js */
 
-const fs = require('fs-extra')
-const esbuild = require('esbuild')
-const Print = require('./console.utils').Print
+import fs from 'fs-extra'
+import esbuild from 'esbuild'
+import { Print } from './console.utils.mjs'
 
 const target = 'target'
 const out = `${target}/out`
@@ -16,20 +16,20 @@ const banner = {
 `
 }
 
-function clean() {
+export function clean() {
   fs.rmSync(target, { recursive: true, force: true})
   fs.rmSync(dist, { recursive: true, force: true})
   return [target, dist]
 }
 
-function copyIndexHtml() {
+export function copyIndexHtml() {
   let html = fs.readFileSync('src/index.html', {encoding: 'utf8'})
   html = html.replace('<script data-app></script>', '<script data-app src="out/HashRouter-script.js"></script>')
   fs.mkdirSync(target, {recursive: true})
   fs.writeFileSync(`${target}/index.html`, html)
 }
 
-function build({format, minify, external, fileNameSuffix}) {
+export function build({format, minify, external, fileNameSuffix}) {
   const buildOptions = {
     entryPoints: ['src/HashRouter.js'],
     bundle: true,
@@ -47,11 +47,11 @@ function build({format, minify, external, fileNameSuffix}) {
   return promise
 }
 
-function copyDist() {
+export function copyDist() {
   fs.copySync(out, dist)
 }
 
-function nodeVersion() {
+export function nodeVersion() {
   let v = process.versions.node.split('.')
   if (v.length < 3) {
     v.unshift('0')
@@ -64,20 +64,11 @@ function nodeVersion() {
   }
 }
 
-function checkNodeVersion(majorMinimum) {
+export function checkNodeVersion(majorMinimum) {
   const version = nodeVersion()
   if (version.major < majorMinimum) {
     Print.error(`Invalid node version. You have ${version.major}. Require ${majorMinimum}.`)
     return false
   }
   return true
-}
-
-module.exports = {
-  clean,
-  copyIndexHtml,
-  build,
-  copyDist,
-  nodeVersion,
-  checkNodeVersion
 }

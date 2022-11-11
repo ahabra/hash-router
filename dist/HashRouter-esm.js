@@ -4,11 +4,12 @@
 // Apache License Version 2.0
 
 
+
 // src/HashRouter.js
-import {Stringer as Stringer2} from "@techexp/jshelper";
+import { Stringer as Stringer2 } from "@techexp/jshelper";
 
 // src/utils/RouterUtils.js
-import {Stringer} from "@techexp/jshelper";
+import { Stringer } from "@techexp/jshelper";
 function getHashPath(href) {
   href = Stringer.substringAfter(href, "#");
   return cleanPath(href);
@@ -46,13 +47,13 @@ function tokenizePath(path) {
 }
 function parsePart(part) {
   if (part.startsWith(":")) {
-    return {type: "param", value: part.substring(1)};
+    return { type: "param", value: part.substring(1) };
   }
   if (part.startsWith("[") && part.endsWith("]")) {
     const value = part.substring(1, part.length - 1);
-    return {type: "regex", value: new RegExp(value)};
+    return { type: "regex", value: new RegExp(value) };
   }
-  return {type: "string", value: part};
+  return { type: "string", value: part };
 }
 function isPartMatch(part, s) {
   if (part.type === "param")
@@ -77,7 +78,7 @@ var HashRouter = class {
     window.addEventListener("load", loadHandler, false);
   }
   add(path, handler) {
-    this.routes.push({route: new Route(path), handler});
+    this.routes.push({ route: new Route(path), handler });
   }
   go(hashPath) {
     hashPath = "#" + cleanPath(hashPath);

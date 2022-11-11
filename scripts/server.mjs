@@ -1,8 +1,8 @@
 
-const handler = require('serve-handler')
-const http = require('http')
-const buildUtils = require('./build.utils')
-const Print = require('./console.utils').Print
+import handler from 'serve-handler'
+import http from 'http'
+import * as buildUtils from './build.utils.mjs'
+import {Print} from './console.utils.mjs'
 
 const serverOptions = {
   public: 'target',

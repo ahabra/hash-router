@@ -6,10 +6,22 @@
 
 var HashRouter = (() => {
   var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __export = (target, all2) => {
     for (var name in all2)
-      __defProp(target, name, {get: all2[name], enumerable: true});
+      __defProp(target, name, { get: all2[name], enumerable: true });
   };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
   // src/HashRouter.js
   var HashRouter_exports = {};
@@ -21,7 +33,7 @@ var HashRouter = (() => {
   var __defProp2 = Object.defineProperty;
   var __export2 = (target, all2) => {
     for (var name in all2)
-      __defProp2(target, name, {get: all2[name], enumerable: true});
+      __defProp2(target, name, { get: all2[name], enumerable: true });
   };
   var Domer_exports = {};
   __export2(Domer_exports, {
@@ -114,7 +126,7 @@ var HashRouter = (() => {
       return a === b;
     return isEqualCompoundType(a, b);
   }
-  var simpleTypes = new Set(["boolean", "number", "bigint", "string", "symbol"]);
+  var simpleTypes = /* @__PURE__ */ new Set(["boolean", "number", "bigint", "string", "symbol"]);
   function isSimpleType(v) {
     return simpleTypes.has(typeof v);
   }
@@ -217,7 +229,7 @@ var HashRouter = (() => {
     const sep = array.length > 0 ? " " : "";
     return sep + array.join(" ");
   }
-  var LOCATIONS = new Set(["beforebegin", "afterbegin", "beforeend", "afterend"]);
+  var LOCATIONS = /* @__PURE__ */ new Set(["beforebegin", "afterbegin", "beforeend", "afterend"]);
   function add(target, tobeAdded, location = "beforeend") {
     location = location.toLowerCase();
     if (!LOCATIONS.has(location))
@@ -416,9 +428,9 @@ var HashRouter = (() => {
   __export2(LineCompare_exports, {
     compareLines: () => compareLines
   });
-  function compareLines(t1, t2, {trim: trim2 = true, skipEmpty = true, caseSensitive = true} = {trim: true, skipEmpty: true, caseSensitive: true}) {
-    t1 = toLines(t1, {trim: trim2, skipEmpty});
-    t2 = toLines(t2, {trim: trim2, skipEmpty});
+  function compareLines(t1, t2, { trim: trim2 = true, skipEmpty = true, caseSensitive = true } = { trim: true, skipEmpty: true, caseSensitive: true }) {
+    t1 = toLines(t1, { trim: trim2, skipEmpty });
+    t2 = toLines(t2, { trim: trim2, skipEmpty });
     if (t1.length !== t2.length) {
       return `t1 has ${t1.length} lines(s) while t2 has ${t2.length} line(s).`;
     }
@@ -440,7 +452,7 @@ ${t2}`;
     }
     return "";
   }
-  function toLines(t, {trim: trim2, skipEmpty}) {
+  function toLines(t, { trim: trim2, skipEmpty }) {
     if (trim2) {
       t = trim(t);
     }
@@ -492,13 +504,13 @@ ${t2}`;
   }
   function parsePart(part) {
     if (part.startsWith(":")) {
-      return {type: "param", value: part.substring(1)};
+      return { type: "param", value: part.substring(1) };
     }
     if (part.startsWith("[") && part.endsWith("]")) {
       const value = part.substring(1, part.length - 1);
-      return {type: "regex", value: new RegExp(value)};
+      return { type: "regex", value: new RegExp(value) };
     }
-    return {type: "string", value: part};
+    return { type: "string", value: part };
   }
   function isPartMatch(part, s) {
     if (part.type === "param")
@@ -523,7 +535,7 @@ ${t2}`;
       window.addEventListener("load", loadHandler, false);
     }
     add(path, handler) {
-      this.routes.push({route: new Route(path), handler});
+      this.routes.push({ route: new Route(path), handler });
     }
     go(hashPath) {
       hashPath = "#" + cleanPath(hashPath);
@@ -555,6 +567,6 @@ ${t2}`;
     const found = routes.find((r) => r.route.isMatch(path, params));
     return found ? found.handler : false;
   }
-  return HashRouter_exports;
+  return __toCommonJS(HashRouter_exports);
 })();
 //# sourceMappingURL=HashRouter-script.js.map
