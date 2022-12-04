@@ -6,7 +6,6 @@
   "license": "Apache",
   "repository": "ahabra/hash-router",
   "main": "dist/HashRouter-esm.js",
-  "type": "commonjs",
   "keywords": [
     "router",
     "hash",
