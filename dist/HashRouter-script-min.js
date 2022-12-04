@@ -1,6 +1,6 @@
 // HashRouter.js Library for hash-based routing.
 // https://github.com/ahabra/hash-router
-// Copyright 2021 (C) Abdul Habra. Version 0.2.2.
+// Copyright 2021 (C) Abdul Habra. Version 0.2.3.
 // Apache License Version 2.0
 
 
