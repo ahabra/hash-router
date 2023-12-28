@@ -1,6 +1,6 @@
 // HashRouter.js Library for hash-based routing.
 // https://github.com/ahabra/hash-router
-// Copyright 2021 (C) Abdul Habra. Version 0.2.3.
+// Copyright 2021 (C) Abdul Habra. Version 0.2.4.
 // Apache License Version 2.0
 
 
@@ -23,6 +23,11 @@ var Route = class {
   constructor(path) {
     this.parts = parsePath(path);
   }
+  /**
+   * Check if given path matches this route
+   * @param {String} path
+   * @param {Object, optional} params An object to populate with path parameters and values
+   */
   isMatch(path, params = {}) {
     const pathItems = tokenizePath(path);
     if (this.parts.length !== pathItems.length)
