@@ -3,9 +3,11 @@
 A library for hash-based routing in the browser.
 
 ## Introduction
-In a Single Page App (SPA), it is convenient to _navigate_ by changing the part of the URL after the hash `#` character, as this will not cause the browser to reload the page.
+In a Single Page App (SPA), it is convenient to _navigate_ by changing the part of the URL after the hash `#` character,
+as this will not cause the browser to reload the page.
 
-This library allows you to associate _callbacks_ with URL paths after the hash, so when a user navigates to a given path, the associated callback is called.
+This library allows you to associate _callbacks_ with URL paths after the hash, so when a user navigates to a
+given path, the associated callback is called.
 
 The size of this library, minified and zipped is about 1KB.
 
@@ -26,7 +28,8 @@ If you plan to use this package as a JS script library
     <script src="https://raw.githubusercontent.com/ahabra/hash-router/master/dist/HashRouter-script-min.js"></script>
 ```
 
-Alternatively, you can download the file `https://raw.githubusercontent.com/ahabra/hash-router/master/dist/HashRouter-script-min.js` and use directly. Note that there is a non-minified version at the same location.
+Alternatively, you can download the file `https://raw.githubusercontent.com/ahabra/hash-router/master/dist/HashRouter-script-min.js`
+and use directly. Note that there is a non-minified version at the same location.
 
 ## Usage
 If you installed as an EcmaScript module
@@ -78,7 +81,7 @@ Each part can be one of:
 
 ##### `handler`
 A callback that takes two arguments, `path` and `params`.
-`path` is the current path that was navigated to, while `params` is an object that contain the path paramters. For example:
+`path` is the current path that was navigated to, while `params` is an object that contain the path parameters. For example:
 
 ```js
 router.add('dept/:id/employee/:name', (path, params) => {
@@ -100,4 +103,5 @@ The path to navigate to. For example:
 router.go('dept/3/employee/bob')
 ```
 
-Calling this functions is somewhat similar to setting `window.location.href`, however this `go()` function makes sure that a hash character will be used, and it updates the browser's history.
+Calling this functions is somewhat similar to setting `window.location.href`, however this `go()` function makes
+sure that a hash character will be used, and it updates the browser's history.

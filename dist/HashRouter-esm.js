@@ -30,13 +30,11 @@ var Route = class {
    */
   isMatch(path, params = {}) {
     const pathItems = tokenizePath(path);
-    if (this.parts.length !== pathItems.length)
-      return false;
+    if (this.parts.length !== pathItems.length) return false;
     for (let i = 0; i < pathItems.length; i++) {
       const part = this.parts[i];
       const item = pathItems[i];
-      if (!isPartMatch(part, item))
-        return false;
+      if (!isPartMatch(part, item)) return false;
       if (part.type === "param") {
         params[part.value] = item;
       }
@@ -61,12 +59,9 @@ function parsePart(part) {
   return { type: "string", value: part };
 }
 function isPartMatch(part, s) {
-  if (part.type === "param")
-    return true;
-  if (part.type === "string")
-    return s === part.value;
-  if (part.type === "regex")
-    return part.value.test(s);
+  if (part.type === "param") return true;
+  if (part.type === "string") return s === part.value;
+  if (part.type === "regex") return part.value.test(s);
   return false;
 }
 
@@ -95,8 +90,7 @@ var HashRouter = class {
 };
 function hashChangeHandler(ev, routes, isLoad = false) {
   const newPath = getNewPath(ev, isLoad);
-  if (newPath === void 0)
-    return;
+  if (newPath === void 0) return;
   const params = {};
   const handler = findHandler(routes, newPath, params);
   if (handler) {
